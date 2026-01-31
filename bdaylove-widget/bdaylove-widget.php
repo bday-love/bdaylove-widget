@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: My SaaS Widget
- * Description: A plugin to display a SaaS widget.
+ * Plugin Name: Bdaylove Widget
+ * Description: A plugin to display a bdaylove widget.
  * Version: 1.0.0
- * Author: Your Name
+ * Author: bdaylove
  * License: GPLv2 or later
  */
 
-namespace MySaaS\Widget;
+namespace Bdaylove\Widget;
 
-use MySaaS\Widget\Settings;
+use Bdaylove\Widget\Settings;
 
 defined( 'ABSPATH' ) || exit;
 

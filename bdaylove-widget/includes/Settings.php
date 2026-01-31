@@ -1,6 +1,6 @@
 <?php
 
-namespace MySaaS\Widget;
+namespace Bdaylove\Widget;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -19,10 +19,10 @@ class Settings {
 	 */
 	public function add_admin_menu() {
 		add_options_page(
-			'My SaaS Widget Settings',
-			'My SaaS Widget',
+			'Bdaylove Widget Settings',
+			'Bdaylove Widget',
 			'manage_options',
-			'my-saas-widget',
+			'bdaylove-widget',
 			[ $this, 'render_settings_page' ]
 		);
 	}
@@ -32,7 +32,7 @@ class Settings {
 	 */
 	public function register_settings() {
 		register_setting(
-			'my_saas_widget_options',
+			'bdaylove_widget_options',
 			'default_widget_id',
 			[
 				'sanitize_callback' => 'sanitize_text_field',
@@ -40,17 +40,17 @@ class Settings {
 		);
 
 		add_settings_section(
-			'my_saas_widget_general_section',
+			'bdaylove_widget_general_section',
 			'General Settings',
 			null,
-			'my-saas-widget'
+			'bdaylove-widget'
 		);
 
 		add_settings_field(
 			'default_widget_id',
 			'Default Widget ID',
 			[ $this, 'render_default_widget_id_field' ],
-			'my-saas-widget',
+			'bdaylove-widget',
 			'my_saas_widget_general_section'
 		);
 	}
@@ -68,7 +68,7 @@ class Settings {
 			<form action="options.php" method="post">
 				<?php
 				settings_fields( 'my_saas_widget_options' );
-				do_settings_sections( 'my-saas-widget' );
+				do_settings_sections( 'bdaylove-widget' );
 				submit_button();
 				?>
 			</form>

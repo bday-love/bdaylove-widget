@@ -14,5 +14,7 @@ use Bdaylove\Widget\Settings;
 defined( 'ABSPATH' ) || exit;
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/Settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/BdayloveWidget.php';
 
 new Settings();
+new BdayloveWidget();

@@ -50,6 +50,16 @@ class Settings {
 			]
 		);
 
+		// Auto Menu Button
+		register_setting(
+			'bdaylove_widget_options',
+			'bdaylove_auto_menu_button',
+			[
+				'sanitize_callback' => 'rest_sanitize_boolean',
+				'default'           => false,
+			]
+		);
+
 		add_settings_section(
 			'bdaylove_widget_general_section',
 			__( 'Ustawienia Główne', 'bdaylove-widget' ),
@@ -69,6 +79,14 @@ class Settings {
 			'bdaylove_script_url',
 			__( 'Adres skryptu (URL)', 'bdaylove-widget' ),
 			[ $this, 'render_script_url_field' ],
+			'bdaylove-widget',
+			'bdaylove_widget_general_section'
+		);
+
+		add_settings_field(
+			'bdaylove_auto_menu_button',
+			__( 'Add \'Book\' button to primary menu', 'bdaylove-widget' ),
+			[ $this, 'render_auto_menu_button_field' ],
 			'bdaylove-widget',
 			'bdaylove_widget_general_section'
 		);
@@ -213,6 +231,24 @@ class Settings {
 			class="regular-text"
 		>
 		<p class="description"><?php esc_html_e( 'Adres URL zewnętrznego skryptu. Zmień na localhost do celów deweloperskich.', 'bdaylove-widget' ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Render the 'bdaylove_auto_menu_button' field.
+	 */
+	public function render_auto_menu_button_field() {
+		$value = get_option( 'bdaylove_auto_menu_button', false );
+		?>
+		<label>
+			<input
+				type="checkbox"
+				name="bdaylove_auto_menu_button"
+				value="1"
+				<?php checked( $value, 1 ); ?>
+			>
+			<?php esc_html_e( 'Zaznacz, aby automatycznie dodać przycisk "Rezerwuj" do menu.', 'bdaylove-widget' ); ?>
+		</label>
 		<?php
 	}
 }

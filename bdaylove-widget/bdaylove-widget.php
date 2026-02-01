@@ -16,6 +16,14 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/Settings.php';
 new Settings();
 
 /**
+ * Load plugin textdomain.
+ */
+function load_textdomain() {
+	load_plugin_textdomain( 'bdaylove-widget', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', __NAMESPACE__ . '\load_textdomain' );
+
+/**
  * Register the block.
  */
 function register_block() {

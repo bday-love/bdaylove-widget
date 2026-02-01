@@ -8,19 +8,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'bdaylove-widget' ) }>
+				<PanelBody title={ __( 'Ustawienia', 'bdaylove-widget' ) }>
 					<TextControl
-						label={ __( 'Widget ID', 'bdaylove-widget' ) }
+						label={ __( 'Identyfikator Widgetu', 'bdaylove-widget' ) }
 						value={ widgetId || '' }
 						onChange={ ( val ) => setAttributes( { widgetId: val } ) }
-						help={ __( 'Leave empty to use the global default ID.', 'bdaylove-widget' ) }
+						help={ __( 'Pozostaw puste, aby użyć domyślnego ID.', 'bdaylove-widget' ) }
 					/>
 					<SelectControl
-						label={ __( 'Display Mode', 'bdaylove-widget' ) }
+						label={ __( 'Tryb wyświetlania', 'bdaylove-widget' ) }
 						value={ widgetMode }
 						options={ [
-							{ label: __( 'Inline Calendar', 'bdaylove-widget' ), value: 'inline' },
-							{ label: __( 'Modal Button', 'bdaylove-widget' ), value: 'modal' },
+							{ label: __( 'Kalendarz w treści', 'bdaylove-widget' ), value: 'inline' },
+							{ label: __( 'Przycisk (Modal)', 'bdaylove-widget' ), value: 'modal' },
 						] }
 						onChange={ ( val ) => setAttributes( { widgetMode: val } ) }
 					/>
@@ -29,13 +29,13 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<Placeholder
 				icon="calendar"
-				label={ __( 'Bday Love Widget', 'bdaylove-widget' ) }
-				instructions={ __( 'Configure the widget in the sidebar.', 'bdaylove-widget' ) }
+				label={ __( 'Widget Bday Love', 'bdaylove-widget' ) }
+				instructions={ __( 'Skonfiguruj widget w pasku bocznym.', 'bdaylove-widget' ) }
 			>
 				<div style={ { marginTop: '10px' } }>
-					<strong>{ __( 'Selected ID:', 'bdaylove-widget' ) }</strong> { widgetId || __( '(Default)', 'bdaylove-widget' ) }
+					<strong>{ __( 'Wybrane ID:', 'bdaylove-widget' ) }</strong> { widgetId || __( '(Domyślne)', 'bdaylove-widget' ) }
 					<br />
-					<strong>{ __( 'Mode:', 'bdaylove-widget' ) }</strong> { widgetMode }
+					<strong>{ __( 'Tryb:', 'bdaylove-widget' ) }</strong> { widgetMode }
 				</div>
 			</Placeholder>
 		</div>

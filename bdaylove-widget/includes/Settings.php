@@ -55,7 +55,9 @@ class Settings {
 			'bdaylove_widget_options',
 			'bdaylove_auto_menu_button',
 			[
-				'sanitize_callback' => 'rest_sanitize_boolean',
+				'sanitize_callback' => function ( $input ) {
+					return ! empty( $input ) ? 1 : 0;
+				},
 				'default'           => false,
 			]
 		);

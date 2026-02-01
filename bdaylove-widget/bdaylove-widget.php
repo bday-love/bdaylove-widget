@@ -98,9 +98,15 @@ function bdaylove_inject_menu_button( $items, $args ) {
 	if ( ! get_option( 'bdaylove_auto_menu_button', false ) ) {
 		return $items;
 	}
-	$locations = [ 'primary', 'main', 'main-menu', 'header' ];
+
+	$locations = [ 'primary', 'main', 'main-menu', 'header', 'primary-menu', 'menu-1', 'top-bar', 'main-nav' ];
+
 	if ( isset( $args->theme_location ) && in_array( $args->theme_location, $locations, true ) ) {
-		$items .= '<li class="menu-item bdaylove-menu-item-wrapper"><a href="#" class="trigger-bday-widget" style="font-weight: bold;">Rezerwuj</a></li>';
+		$script_url = get_option( 'bdaylove_script_url', 'https://www.bday.love/embed.js' );
+		wp_enqueue_script( 'bdaylove-embed', $script_url, [], null, true );
+
+		$label  = esc_html__( 'Rezerwuj', 'bdaylove-widget' );
+		$items .= '<li class="menu-item bdaylove-menu-item-wrapper"><a href="#" class="trigger-bday-widget" style="font-weight: bold; color: #d63638; cursor: pointer;">' . $label . '</a></li>';
 	}
 	return $items;
 }

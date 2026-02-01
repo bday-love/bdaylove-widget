@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bday-love/widget",
+	"version": "1.0.0",
+	"title": "Bday Love Widget",
+	"category": "widgets",
+	"icon": "calendar",
+	"description": "Display Bday Love widget.",
+	"attributes": {
+		"widgetId": {
+			"type": "string"
+		},
+		"widgetMode": {
+			"type": "string",
+			"default": "inline"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "bdaylove-widget",
+	"editorScript": "file:./index.js"
+}

@@ -31,11 +31,22 @@ class Settings {
 	 * Register the settings, sections, and fields.
 	 */
 	public function register_settings() {
+		// Widget ID
 		register_setting(
 			'bdaylove_widget_options',
-			'default_widget_id',
+			'bdaylove_widget_id',
 			[
 				'sanitize_callback' => 'sanitize_text_field',
+			]
+		);
+
+		// Script URL
+		register_setting(
+			'bdaylove_widget_options',
+			'bdaylove_script_url',
+			[
+				'sanitize_callback' => 'esc_url_raw',
+				'default'           => 'https://www.bday.love/embed.js',
 			]
 		);
 
@@ -47,11 +58,19 @@ class Settings {
 		);
 
 		add_settings_field(
-			'default_widget_id',
+			'bdaylove_widget_id',
 			'Default Widget ID',
-			[ $this, 'render_default_widget_id_field' ],
+			[ $this, 'render_widget_id_field' ],
 			'bdaylove-widget',
-			'my_saas_widget_general_section'
+			'bdaylove_widget_general_section'
+		);
+
+		add_settings_field(
+			'bdaylove_script_url',
+			'Script URL',
+			[ $this, 'render_script_url_field' ],
+			'bdaylove-widget',
+			'bdaylove_widget_general_section'
 		);
 	}
 
@@ -67,7 +86,7 @@ class Settings {
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<form action="options.php" method="post">
 				<?php
-				settings_fields( 'my_saas_widget_options' );
+				settings_fields( 'bdaylove_widget_options' );
 				do_settings_sections( 'bdaylove-widget' );
 				submit_button();
 				?>
@@ -77,17 +96,34 @@ class Settings {
 	}
 
 	/**
-	 * Render the 'default_widget_id' field.
+	 * Render the 'bdaylove_widget_id' field.
 	 */
-	public function render_default_widget_id_field() {
-		$default_widget_id = get_option( 'default_widget_id' );
+	public function render_widget_id_field() {
+		$value = get_option( 'bdaylove_widget_id' );
 		?>
 		<input
 			type="text"
-			name="default_widget_id"
-			value="<?php echo esc_attr( $default_widget_id ); ?>"
+			name="bdaylove_widget_id"
+			value="<?php echo esc_attr( $value ); ?>"
 			class="regular-text"
 		>
+		<p class="description">Enter your Bday Love Widget ID here.</p>
+		<?php
+	}
+
+	/**
+	 * Render the 'bdaylove_script_url' field.
+	 */
+	public function render_script_url_field() {
+		$value = get_option( 'bdaylove_script_url', 'https://www.bday.love/embed.js' );
+		?>
+		<input
+			type="url"
+			name="bdaylove_script_url"
+			value="<?php echo esc_attr( $value ); ?>"
+			class="regular-text"
+		>
+		<p class="description">The URL of the external script. Change to localhost for development.</p>
 		<?php
 	}
 }

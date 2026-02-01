@@ -86,3 +86,22 @@ function shortcode_handler( $atts ) {
 }
 add_shortcode( 'bday-love', __NAMESPACE__ . '\shortcode_handler' );
 add_shortcode( 'bday-love-widget', __NAMESPACE__ . '\shortcode_handler' );
+
+/**
+ * Inject Book button into menu.
+ *
+ * @param string $items The menu items.
+ * @param object $args The menu arguments.
+ * @return string The filtered menu items.
+ */
+function bdaylove_inject_menu_button( $items, $args ) {
+	if ( ! get_option( 'bdaylove_auto_menu_button', false ) ) {
+		return $items;
+	}
+	$locations = [ 'primary', 'main', 'main-menu', 'header' ];
+	if ( isset( $args->theme_location ) && in_array( $args->theme_location, $locations, true ) ) {
+		$items .= '<li class="menu-item bdaylove-menu-item-wrapper"><a href="#" class="trigger-bday-widget" style="font-weight: bold;">Rezerwuj</a></li>';
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\bdaylove_inject_menu_button', 10, 2 );
